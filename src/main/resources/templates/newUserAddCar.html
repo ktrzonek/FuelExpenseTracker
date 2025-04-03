@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Details</title>
+</head>
+<body>
+
+<h1>User Details</h1>
+<p>First Name: ${param.firstName}</p>
+<p>Last Name: ${param.lastName}</p>
+<p>Email: ${param.email}</p>
+<p></p>
+
+<form method="post" action="/car/add" >
+  <label>Enter make:</label>
+  <input type="text" name="make" placeholder="Make">
+  <label>Enter model:</label>
+  <input type="text" name="model" placeholder="Model">
+  <label>Enter registration number:</label>
+  <input type="text" name="registrationNumber" placeholder="Registration number">
+  <label>Enter fuel type:</label>
+  <input type="text" name="fuelType" placeholder="Fuel type">
+  <button type="submit">Add Car</button>
+</form>
+
+
+
+</body>
+</html>
