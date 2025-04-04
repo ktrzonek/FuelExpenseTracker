@@ -11,7 +11,12 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class CarService {
-    private CarRepository carRepository;
+
+    private final CarRepository carRepository;
+
+    public Car addCar(Car car) {
+        return carRepository.save(car);
+    }
 
     public List<Car> getAll() {
         return carRepository.findAll();
@@ -30,5 +35,7 @@ public class CarService {
         }
         return 0.0;
     }
+
+
 
 }

@@ -1,5 +1,49 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=IntelliJ IDEA
+###
+
+POST http://localhost:8080/user/add
+Content-Type: application/json
+
+{
+  "email": "ak@gmail.com",
+  "firstName": "Aleksandra",
+  "lastName": "Kowalska"
+}
 
 ###
+
+PUT http://localhost:8080/user/update/20
+Content-Type: application/json
+
+{
+  "email": "updated@gmail.com",
+  "firstName": "updated",
+  "lastName": "updated"
+}
+
+###
+
+GET http://localhost:8080/user/all
+Content-Type: application/json
+
+###
+
+DELETE http://localhost:8080/user/delete/20
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/user/piotrnn@gmail.com
+Content-Type: application/json
+
+###
+
+#duplicated email
+POST http://localhost:8080/user/add
+Content-Type: application/json
+
+{
+  "email": "kt@gmail.com",
+  "firstName": "Kinga",
+  "lastName": "Kowalska"
+}
+

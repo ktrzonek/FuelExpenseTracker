@@ -2,6 +2,7 @@ package pl.coderslab.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,14 +16,20 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+
+    @NotNull(message = "Registration number must not be null")
+    @Size(min = 4, max =8, message = "Registration number must be between 4 and 8 characters")
     private String registrationNumber;
-    @NotNull
+
+    @NotNull(message = "Make must not be null")
     private String make;
-    @NotNull
+
+    @NotNull(message = "Model must not be null")
     private String model;
-    @NotNull
+
+    @NotNull(message = "Fuel type must not be null")
     private String fuelType;
+
 
     @OneToMany
     @JoinColumn(name = "car_id")

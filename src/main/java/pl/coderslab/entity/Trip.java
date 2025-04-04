@@ -17,15 +17,20 @@ public class Trip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+
+    @NotNull(message = "Trip name must not be null")
     private String tripName;
-    @NotNull
+
+    @NotNull(message = "Fuel consumption must not be null")
     private Double fuelConsumption;
-    @NotNull
+
+    @NotNull(message = "Distance must not be null")
     private Double distance;
-    @NotNull
+
+    @NotNull(message = "Date must not be null")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
+
 
     @OneToMany
     @JoinColumn(name = "trip_id")

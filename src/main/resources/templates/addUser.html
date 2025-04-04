@@ -8,11 +8,11 @@
 
 <form method="post" action="/user/add">
   <label>Enter first name:</label>
-  <input type="text" name="firstName" placeholder="Name">
+  <input type="text" name="firstName" placeholder="Name" required pattern="[A-Za-z]+" title="Only letters are allowed">
   <label>Enter last name</label>
-  <input type="text" name="lastName" placeholder="Last name">
+  <input type="text" name="lastName" placeholder="Last name" required pattern="[A-Za-z]+" title="Only letters are allowed">
   <label>Podaj email</label>
-  <input type="text" name="email" placeholder="Email">
+  <input type="email" name="email" placeholder="Email" required>
   <input type="submit">
 </form>
 

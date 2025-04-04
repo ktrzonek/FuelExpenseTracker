@@ -16,13 +16,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
     private String firstName;
+
     @NotNull
     private String lastName;
+
     @NotNull
+    @Column(unique = true)
     @Email
     private String email;
+
 
     @OneToMany
     @JoinColumn(name = "user_id")
