@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dto.CarInfoDTO;
 import pl.coderslab.entity.Car;
@@ -32,18 +35,22 @@ public class CarController {
         return ResponseEntity.ok(addedCar);
     }
 
+
+    @Transactional
     @PostMapping("/addCarToNewUser")
-    public ResponseEntity<Car> addCarToNewUser(@ModelAttribute Car car,@RequestParam Long userId) {
+    public  String addCarToNewUser(@ModelAttribute Car car, @RequestParam Long userId, Model model) {
         Car addedCar = carService.addCar(car);
-        if (addedCar == null) {
-            return ResponseEntity.notFound().build();
-        }
         User user = userService.getUserById(userId);
+
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("cars", user.getCarList());
+
         user.getCarList().add(addedCar);
         userService.updateUserCar(user);
-
-        return ResponseEntity.ok(addedCar);
+//        return "redirect:/user/{userId}/cars";
+        return "addUserjsp";
     }
+
 
     @GetMapping("/all")
     public ResponseEntity<List<Car>> getAllCars() {

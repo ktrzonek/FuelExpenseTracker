@@ -4,6 +4,7 @@ package pl.coderslab.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dto.CarInfoDTO;
@@ -26,11 +27,12 @@ public class UserController {
 
     @GetMapping("/add")
     public String addUser() {
-        return "addUser";
+        return "addUserjsp";
     }
 //    http://localhost:8080/user/add
 
 
+    @Transactional
     @PostMapping("/add")
     public String addUser( @ModelAttribute User user, Model model) {
         try {
@@ -39,7 +41,7 @@ public class UserController {
             model.addAttribute("lastName", addedUser.getLastName());
             model.addAttribute("email", addedUser.getEmail());
             model.addAttribute("userId", addedUser.getId());
-            return "newUserAddCar";
+            return "AddNewUserCar";
         } catch (IllegalArgumentException e) {
             return "errorPage";
         }
@@ -47,14 +49,11 @@ public class UserController {
 
 
 
-
     @GetMapping("/all")
-    public ResponseEntity<List<User>> getAllUsers() {
+    public String getAllUsers(Model model) {
         List<User> users = userService.getAllUsers();
-        if (users == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(users);
+        model.addAttribute("users", users);
+        return "UserList";
     }
 
 
@@ -98,6 +97,14 @@ public class UserController {
     }
 
 
+    @GetMapping("/{userId}/cars")
+    public String showCars(@PathVariable Long userId, Model model) {
+        User user = userService.getUserById(userId);
+        List<Car> cars = user.getCarList();
+        model.addAttribute("cars", cars);
+        model.addAttribute("userId", userId);
+        return "CarList";
+    }
 
 
 
