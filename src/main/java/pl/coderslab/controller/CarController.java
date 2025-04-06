@@ -1,22 +1,17 @@
 package pl.coderslab.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.dto.CarInfoDTO;
 import pl.coderslab.entity.Car;
-import pl.coderslab.entity.FuelExpense;
 import pl.coderslab.entity.User;
 import pl.coderslab.service.CarService;
 import pl.coderslab.service.UserService;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Controller
 @AllArgsConstructor
@@ -49,19 +44,6 @@ public class CarController {
     }
 
 
-
-    @Transactional
-    @GetMapping("/{id}")
-    public ResponseEntity<Car> getCar(@PathVariable Long id) {
-        Car car = carService.getById(id);
-        if (car == null) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(car);
-    }
-//    http://localhost:8080/car/1
-
-
     @Transactional
     @GetMapping("/{id}/total-fuel-cost")
     public ResponseEntity<Double> getTotalFuelCost(@PathVariable Long id) {
@@ -72,6 +54,32 @@ public class CarController {
         return ResponseEntity.ok(totalFuelCost);
     }
 //    http://localhost:8080/car/1/total-fuel-cost
+
+
+    @GetMapping("/update/{carId}")
+    public String showFormUpdateCar(@PathVariable Long carId, Model model, @RequestParam Long userId) {
+        Car car = carService.getById(carId);
+        model.addAttribute("carId", car.getId());
+        model.addAttribute("make", car.getMake());
+        model.addAttribute("model", car.getModel());
+        model.addAttribute("registrationNumber", car.getRegistrationNumber());
+        model.addAttribute("fuelType", car.getFuelType());
+        model.addAttribute("userId", userId);
+        return "updateCar";
+    }
+
+    @Transactional
+    @PostMapping("/update/{carId}")
+    public String updateCar(@PathVariable Long carId, @ModelAttribute Car car, @RequestParam Long userId) {
+        Car updatedCar = carService.updateCar(carId, car);
+        return "redirect:/user/cars/" + userId;
+    }
+
+    @GetMapping("/delete/{carId}")
+    public String deleteUser(@PathVariable Long carId, @RequestParam Long userId) {
+        carService.deleteCar(carId);
+        return "redirect:/user/cars/" + userId;
+    }
 
 
 

@@ -25,6 +25,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Make</th>
+                        <th>Model</th>
                         <th>Registration number</th>
                         <th>Action</th>
 
@@ -33,13 +34,14 @@
                         <tr>
                             <td>${car.id}</td>
                             <td>${car.make}</td>
+                            <td>${car.model}</td>
                             <td>${car.registrationNumber}</td>
                             <td>
 <%--                                                            <a href='<c:url value="/user/delete?userId=${userId}"/>'>Delete</a>--%>
 <%--                                                            <a href='<c:url value="/user/edit?userId=${userId}"/>'>Edit</a>--%>
 <%--                                                            <a href='<c:url value="/user/show?userId=${user.id}"/>'>Show</a>--%>
-                                                <a href="<c:url value='/car/delete/${car.id}'/>">Delete</a>
-                                                <a href="<c:url value='/car/update/${car.id}'/>">Edit</a>
+                                                <a href="<c:url value='/car/delete/${car.id}?userId=${userId}'/>">Delete</a>
+                                                <a href="<c:url value='/car/update/${car.id}?userId=${userId}'/>">Edit</a>
                                                 <a href="<c:url value='/car/show/${car.id}'/>">Show</a>
                             </td>
                         </tr>

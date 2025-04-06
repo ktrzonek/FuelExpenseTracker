@@ -153,10 +153,16 @@ public class UserController {
     }
 
     @GetMapping("/findByEmail")
-    public String findByEmail(@RequestParam String enteredEmail) {
-//        User user = userService.getUserByEmail(enteredEmail);
-        return "redirect:/user/" + enteredEmail;
+    public String findByEmail(@RequestParam String enteredEmail, Model model) {
+        User user = userService.getUserByEmail(enteredEmail);
+        model.addAttribute("userId", user.getId());
+        model.addAttribute("firstName", user.getFirstName());
+        model.addAttribute("lastName", user.getLastName());
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("cars", user.getCarList());
+        return "CarList";
     }
+
 
 
 

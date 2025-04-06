@@ -36,6 +36,19 @@ public class CarService {
         return 0.0;
     }
 
+    public Car updateCar(Long carId, Car car) {
+        Car updatedCar = carRepository.findById(carId).orElse(null);
+        updatedCar.setMake(car.getMake());
+        updatedCar.setModel(car.getModel());
+        updatedCar.setRegistrationNumber(car.getRegistrationNumber());
+        updatedCar.setFuelType(car.getFuelType());
+        return carRepository.save(updatedCar);
+    }
+
+    public void deleteCar(Long carId) {
+        carRepository.deleteById(carId);
+    }
+
 
 
 }
