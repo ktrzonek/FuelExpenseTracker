@@ -18,7 +18,7 @@ import pl.coderslab.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @AllArgsConstructor
 @RequestMapping("/car")
 public class CarController {
@@ -26,42 +26,31 @@ public class CarController {
     private final CarService carService;
     private final UserService userService;
 
-    @PostMapping("/add")
-    public ResponseEntity<Car> addCar(@ModelAttribute Car car) {
-        Car addedCar = carService.addCar(car);
-        if (addedCar == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(addedCar);
+
+    @GetMapping("/add")
+    public String showFormAddCar(@RequestParam Long userId, Model model) {
+        model.addAttribute("userId", userId);
+        return "addCar";
     }
+
+    @Transactional
+    @PostMapping("/add")
+    public String addCar(@ModelAttribute Car car, @RequestParam Long userId) {
+        try {
+            Car addedCar = carService.addCar(car);
+            User user = userService.getUserById(userId);
+            user.getCarList().add(addedCar);
+            userService.updateUserCar(user);
+//            return "redirect:/user/all";
+            return "redirect:/user/cars/" + user.getId();
+        } catch (IllegalArgumentException e) {
+            return "errorPage";
+        }
+    }
+
 
 
     @Transactional
-    @PostMapping("/addCarToNewUser")
-    public  String addCarToNewUser(@ModelAttribute Car car, @RequestParam Long userId, Model model) {
-        Car addedCar = carService.addCar(car);
-        User user = userService.getUserById(userId);
-
-        model.addAttribute("email", user.getEmail());
-        model.addAttribute("cars", user.getCarList());
-
-        user.getCarList().add(addedCar);
-        userService.updateUserCar(user);
-//        return "redirect:/user/{userId}/cars";
-        return "addUserjsp";
-    }
-
-
-    @GetMapping("/all")
-    public ResponseEntity<List<Car>> getAllCars() {
-        List<Car> cars = carService.getAll();
-        if (cars.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(cars);
-    }
-//    http://localhost:8080/car/all
-
     @GetMapping("/{id}")
     public ResponseEntity<Car> getCar(@PathVariable Long id) {
         Car car = carService.getById(id);
@@ -73,6 +62,7 @@ public class CarController {
 //    http://localhost:8080/car/1
 
 
+    @Transactional
     @GetMapping("/{id}/total-fuel-cost")
     public ResponseEntity<Double> getTotalFuelCost(@PathVariable Long id) {
         Double totalFuelCost = carService.getTotalFuelCostForCar(id);

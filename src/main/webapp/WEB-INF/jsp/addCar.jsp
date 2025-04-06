@@ -4,7 +4,7 @@
 <div class="container-fluid">
 
     <div>
-                <h1 class="h3 mb-0 text-gray-800">Hello, ${firstName}</h1>
+                <h1 class="h3 mb-0 text-gray-800">Hello, </h1>
     </div>
     <br>
     <div class="card shadow mb-4">
@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
 
-            <form action="/car/addCarToNewUser" method="post">
+            <form action="/car/add" method="post">
                 <input type="hidden" name="userId" value="${userId}">
                 <div class="form-group">
                     <label for="make">Make</label>

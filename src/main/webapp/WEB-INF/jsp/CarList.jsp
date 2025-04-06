@@ -7,13 +7,17 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">All of your cars are listed below</h1>
-<%--        <a href="<c:url value="/user/add"/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">--%>
-<%--            <i class="fas fa-download fa-sm text-white-50"></i> Dodaj użytkownika</a>--%>
+        <h1 class="h3 mb-0 text-gray-800">All of your cars ${firstName} are listed below</h1>
+<%--        <a href="<c:url value="/car/add"/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">--%>
+<%--            <i class="fas fa-download fa-sm text-white-50"></i>Add a car</a>--%>
+        <a href="<c:url value='/car/add?userId=${userId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i>Add a car</a>
+
+
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">List of cars for ${email}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Your email: ${email} and ID number: ${userId}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -31,11 +35,12 @@
                             <td>${car.make}</td>
                             <td>${car.registrationNumber}</td>
                             <td>
-
-
-                                    <%--                                <a href='<c:url value="/user/delete?id=${user.id}"/>'>Usuń</a>--%>
-                                    <%--                                <a href='<c:url value="/user/edit?id=${user.id}"/>'>Edit</a>--%>
-                                    <%--                                <a href='<c:url value="/user/show?id=${user.id}"/>'>Pokaż</a>--%>
+<%--                                                            <a href='<c:url value="/user/delete?userId=${userId}"/>'>Delete</a>--%>
+<%--                                                            <a href='<c:url value="/user/edit?userId=${userId}"/>'>Edit</a>--%>
+<%--                                                            <a href='<c:url value="/user/show?userId=${user.id}"/>'>Show</a>--%>
+                                                <a href="<c:url value='/car/delete/${car.id}'/>">Delete</a>
+                                                <a href="<c:url value='/car/update/${car.id}'/>">Edit</a>
+                                                <a href="<c:url value='/car/show/${car.id}'/>">Show</a>
                             </td>
                         </tr>
                     </c:forEach>

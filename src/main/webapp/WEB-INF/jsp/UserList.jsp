@@ -7,13 +7,13 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">All of your cars are listed below</h1>
-        <%--        <a href="<c:url value="/user/add"/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">--%>
-        <%--            <i class="fas fa-download fa-sm text-white-50"></i> Dodaj użytkownika</a>--%>
+        <h1 class="h3 mb-0 text-gray-800">A list of users</h1>
+                <a href="<c:url value="/user/add"/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <i class="fas fa-download fa-sm text-white-50"></i>Add new user</a>
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">List of users</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Choose an action to perform</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,10 +34,10 @@
                             <td>${user.email}</td>
                             <td>
 
+                                                <a href="<c:url value='/user/delete/${user.id}' />">Delete</a>
+                                                <a href="<c:url value='/user/update/${user.id}' />">Edit</a>
+                                                <a href="<c:url value='/user/cars/${user.id}' />">Show</a>
 
-                                    <%--                                <a href='<c:url value="/user/delete?id=${user.id}"/>'>Usuń</a>--%>
-                                    <%--                                <a href='<c:url value="/user/edit?id=${user.id}"/>'>Edit</a>--%>
-                                    <%--                                <a href='<c:url value="/user/show?id=${user.id}"/>'>Pokaż</a>--%>
                             </td>
                         </tr>
                     </c:forEach>
