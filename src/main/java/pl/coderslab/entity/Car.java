@@ -31,15 +31,15 @@ public class Car {
     private String fuelType;
 
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "car_id")
     private List<Trip> tripList = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "car_id")
     private List<FuelExpense> fuelExpenseList = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "car_id")
     private List<CarExpense> carExpenseList = new ArrayList<>();
 }

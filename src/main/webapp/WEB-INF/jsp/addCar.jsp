@@ -4,7 +4,7 @@
 <div class="container-fluid">
 
     <div>
-                <h1 class="h3 mb-0 text-gray-800">Hello, </h1>
+                <h1 class="h3 mb-0 text-gray-800">Please enter the details below</h1>
     </div>
     <br>
     <div class="card shadow mb-4">
@@ -25,15 +25,31 @@
                 </div>
                 <div class="form-group">
                     <label for="registrationNumber">Registration number</label>
-                    <input name="registrationNumber" type="text" class="form-control" id="registrationNumber" required>
+                    <input name="registrationNumber" type="text" class="form-control" id="registrationNumber" required
+                           pattern=".{5,9}" title="Registration number must be between 5 and 9 characters"
+                           oninput="this.value = this.value.toUpperCase()">
                 </div>
+
                 <div class="form-group">
                     <label for="fuelType">Fuel type</label>
-                    <input name="fuelType" type="text" class="form-control" id="fuelType" required>
+                    <div>
+                        <input type="radio" id="petrol" name="fuelType" value="Petrol" required>
+                        <label for="petrol">Petrol</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="diesel" name="fuelType" value="Diesel" required>
+                        <label for="diesel">Diesel</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="lpg" name="fuelType" value="LPG" required>
+                        <label for="lpg">LPG</label>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
+
+            <button type="button" class="btn btn-secondary mt-3" onclick="history.back()">Go Back</button>
 
         </div>
     </div>

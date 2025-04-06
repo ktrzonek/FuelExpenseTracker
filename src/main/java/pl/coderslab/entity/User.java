@@ -28,8 +28,7 @@ public class User {
     @Email
     private String email;
 
-
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     private List<Car> carList = new ArrayList<>();
 }

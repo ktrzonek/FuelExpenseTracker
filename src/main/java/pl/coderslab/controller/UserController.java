@@ -50,7 +50,7 @@ public class UserController {
             model.addAttribute("cars", cars);
             return "CarList";
         } catch (IllegalArgumentException e) {
-            return "errorPage";
+            return "errorPageEmail";
         }
     }
 

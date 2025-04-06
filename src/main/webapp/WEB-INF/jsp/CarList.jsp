@@ -46,6 +46,7 @@
                     </c:forEach>
                 </table>
             </div>
+            <button type="button" class="btn btn-secondary mt-3" onclick="history.back()">Go Back</button>
         </div>
     </div>
 </div>
