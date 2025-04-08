@@ -7,17 +7,16 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">All of your cars ${firstName} are listed below</h1>
-<%--        <a href="<c:url value="/car/add"/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">--%>
-<%--            <i class="fas fa-download fa-sm text-white-50"></i>Add a car</a>--%>
+        <h1 class="h3 mb-0 text-gray-800">Your email: ${email} and ID number: ${userId}</h1>
+
         <a href="<c:url value='/car/add?userId=${userId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-download fa-sm text-white-50"></i>Add a car</a>
-
-
     </div>
+
+
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Your email: ${email} and ID number: ${userId}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">All of your cars ${firstName} are listed below</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -37,9 +36,6 @@
                             <td>${car.model}</td>
                             <td>${car.registrationNumber}</td>
                             <td>
-<%--                                                            <a href='<c:url value="/user/delete?userId=${userId}"/>'>Delete</a>--%>
-<%--                                                            <a href='<c:url value="/user/edit?userId=${userId}"/>'>Edit</a>--%>
-<%--                                                            <a href='<c:url value="/user/show?userId=${user.id}"/>'>Show</a>--%>
                                                 <a href="<c:url value='/car/delete/${car.id}?userId=${userId}'/>">Delete</a>
                                                 <a href="<c:url value='/car/update/${car.id}?userId=${userId}'/>">Edit</a>
                                                 <a href="<c:url value='/car/show/${car.id}'/>">Show</a>
@@ -48,13 +44,11 @@
                     </c:forEach>
                 </table>
             </div>
-            <button type="button" class="btn btn-secondary mt-3" onclick="history.back()">Go Back</button>
         </div>
     </div>
+    <button type="button" class="btn btn-secondary mt-3" onclick="history.back()">Go Back</button>
 </div>
 
 
 <!-- /.container-fluid -->
 <%@ include file="footer.jsp" %>
-
-

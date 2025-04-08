@@ -81,6 +81,22 @@ public class CarController {
         return "redirect:/user/cars/" + userId;
     }
 
+    @GetMapping("/show/{carId}")
+    public String showCarInfo(@PathVariable Long carId, Model model) {
+        Car car = carService.getById(carId);
+        model.addAttribute("carId", car.getId());
+        model.addAttribute("make", car.getMake());
+        model.addAttribute("model", car.getModel());
+        model.addAttribute("registrationNumber", car.getRegistrationNumber());
+        model.addAttribute("fuelType", car.getFuelType());
+        model.addAttribute("trips", car.getTripList());
+        model.addAttribute("fuelExpenses", car.getFuelExpenseList());
+        model.addAttribute("carExpenses", car.getCarExpenseList());
+        return "CarInfo";
+    }
+
+
+
 
 
 // zrobic na total trip cost z funkcji

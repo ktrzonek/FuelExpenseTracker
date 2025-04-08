@@ -2,9 +2,12 @@ package pl.coderslab.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.coderslab.entity.Car;
 import pl.coderslab.entity.Trip;
 import pl.coderslab.entity.TripExpense;
 import pl.coderslab.repository.TripRepository;
+
+import java.util.List;
 
 
 @Service
@@ -27,4 +30,10 @@ public class TripService {
     public Trip getTripById(Long id) {
         return tripRepository.getTripById(id);
     }
+
+    //dodane
+//    public List<Trip> getAllTrips(Long carId) {
+//        return tripRepository.getTripsByCarId(carId);
+//    }
+
 }

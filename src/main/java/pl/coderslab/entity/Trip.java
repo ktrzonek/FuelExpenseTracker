@@ -28,7 +28,8 @@ public class Trip {
     private Double distance;
 
     @NotNull(message = "Date must not be null")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+//    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
 

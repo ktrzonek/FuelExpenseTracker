@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dto.CarInfoDTO;
 import pl.coderslab.entity.Car;
 import pl.coderslab.entity.FuelExpense;
+import pl.coderslab.entity.Trip;
 import pl.coderslab.entity.User;
 import pl.coderslab.service.CarService;
+import pl.coderslab.service.TripService;
 import pl.coderslab.service.UserService;
 
 import java.util.ArrayList;
@@ -67,7 +69,6 @@ public class UserController {
     }
 
 
-
     @Transactional
     @GetMapping("/all")
     public String getAllUsers(Model model) {
@@ -94,12 +95,12 @@ public class UserController {
         return "redirect:/user/all";
     }
 
-
-    @GetMapping("/info/{id}")
-    public String infoPage(@PathVariable Long id, Model model) {
-//        return "redirect:/user/all" + updatedUser.getEmail();
-        return "infoPage";
-    }
+//
+//    @GetMapping("/info/{id}")
+//    public String infoPage(@PathVariable Long id, Model model) {
+////        return "redirect:/user/all" + updatedUser.getEmail();
+//        return "infoPage";
+//    }
 
 
     @Transactional
@@ -132,15 +133,6 @@ public class UserController {
         return ResponseEntity.ok(carInfoDTOList);
     }
 
-
-//    @GetMapping("/{userId}/cars")
-//    public String showCars(@PathVariable Long userId, Model model) {
-//        User user = userService.getUserById(userId);
-//        List<Car> cars = user.getCarList();
-//        model.addAttribute("cars", cars);
-//        model.addAttribute("userId", userId);
-//        return "CarList";
-//    }
 
     //DeleteMapping will not work with href in jsp file
     @GetMapping("/delete/{userId}")
