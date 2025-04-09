@@ -11,8 +11,8 @@
     </div>
     <br>
     <div>
-        <h1 class="h4 mb-0 text-gray-800 font-weight-bold">${make} ${model}, ${registrationNumber}</h1>
-        <h1 class="h5 mb-0 text-gray-800">Fuel type: ${fuelType}</h1>
+        <h1 class="h3 mb-0 text-gray-800 font-weight-bold">${make} ${model}, ${registrationNumber}</h1>
+        <h1 class="h4 mb-0 text-gray-800">Fuel type: ${fuelType}</h1>
     </div>
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -47,7 +47,6 @@
                             <td>${trip.fuelConsumption}</td>
                             <td>
                                 <a href="<c:url value='/trip/delete/${trip.id}?carId=${carId}'/>">Delete</a>
-                                <a href="<c:url value='/trip/update/${trip.id}?carId=${carId}'/>">Edit</a>
                                 <a href="<c:url value='/trip/show/${trip.id}'/>">Show</a>
                             </td>
                         </tr>
@@ -61,7 +60,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1></h1>
-        <a href="<c:url value='/trip/add?carId=${carId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="<c:url value='/fuelExpense/add?carId=${carId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-download fa-sm text-white-50"></i>Add fuel expense</a>
     </div>
 
@@ -90,11 +89,13 @@
                             <td>${fuelExpense.pricePerLiter}</td>
                             <td>
                                 <a href="<c:url value='/fuelExpense/delete/${fuelExpense.id}?carId=${carId}'/>">Delete</a>
-                                <a href="<c:url value='/fuelExpense/update/${fuelExpense.id}?carId=${carId}'/>">Edit</a>
                             </td>
                         </tr>
                     </c:forEach>
                 </table>
+                <div>
+                <h1 class="h5 mb-0 font-weight-bold text-primary"> You have spent ${totalFuelExpense} PLN on fuel in total</h1>
+                </div>
             </div>
         </div>
     </div>
@@ -103,7 +104,7 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1></h1>
-        <a href="<c:url value='/trip/add?carId=${carId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="<c:url value='/carExpense/add?carId=${carId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-download fa-sm text-white-50"></i>Add car expense</a>
     </div>
 
@@ -130,7 +131,6 @@
                             <td>${carExpense.carCost}</td>
                             <td>
                                 <a href="<c:url value='/carExpense/delete/${carExpense.id}?carId=${carId}'/>">Delete</a>
-                                <a href="<c:url value='/carExpense/update/${carExpense.id}?carId=${carId}'/>">Edit</a>
                             </td>
                         </tr>
                     </c:forEach>

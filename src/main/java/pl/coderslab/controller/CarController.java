@@ -36,7 +36,6 @@ public class CarController {
             User user = userService.getUserById(userId);
             user.getCarList().add(addedCar);
             userService.updateUserCar(user);
-//            return "redirect:/user/all";
             return "redirect:/user/cars/" + user.getId();
         } catch (IllegalArgumentException e) {
             return "errorPage";
@@ -92,6 +91,7 @@ public class CarController {
         model.addAttribute("trips", car.getTripList());
         model.addAttribute("fuelExpenses", car.getFuelExpenseList());
         model.addAttribute("carExpenses", car.getCarExpenseList());
+        model.addAttribute("totalFuelExpense", carService.getTotalFuelCostForCar(car.getId()));
         return "CarInfo";
     }
 

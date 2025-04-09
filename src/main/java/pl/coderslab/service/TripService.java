@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.entity.Car;
 import pl.coderslab.entity.Trip;
 import pl.coderslab.entity.TripExpense;
+import pl.coderslab.entity.User;
 import pl.coderslab.repository.TripRepository;
 
 import java.util.List;
@@ -31,9 +32,24 @@ public class TripService {
         return tripRepository.getTripById(id);
     }
 
-    //dodane
-//    public List<Trip> getAllTrips(Long carId) {
-//        return tripRepository.getTripsByCarId(carId);
-//    }
+
+    public Trip addTrip(Trip trip) {
+        return tripRepository.save(trip);
+    }
+
+    public Trip updateTrip(Long tripId, Trip trip) {
+        Trip tripToUpdate = tripRepository.getTripById(tripId);
+        tripToUpdate.setTripName(trip.getTripName());
+        tripToUpdate.setDate(trip.getDate());
+        tripToUpdate.setDistance(trip.getDistance());
+        tripToUpdate.setFuelConsumption(trip.getFuelConsumption());
+        tripToUpdate.setTripExpenseList(trip.getTripExpenseList());
+        return tripRepository.save(tripToUpdate);
+    }
+
+    public void deleteTrip(Long id) {
+        tripRepository.deleteById(id);
+    }
+
 
 }

@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface TripRepository extends JpaRepository<Trip, Long> {
     Trip getTripById(Long id);
-    //dodane
-//    List<Trip> getTripsByCarId(Long carId);
 }

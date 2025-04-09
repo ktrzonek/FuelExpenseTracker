@@ -46,7 +46,8 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-secondary mt-3" onclick="history.back()">Go Back</button>
+<%--    <button type="button" class="btn btn-secondary mt-3" onclick="history.back()">Go Back</button>--%>
+    <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='http://localhost:8080/user/all'">Go to User List</button>
 </div>
 
 
