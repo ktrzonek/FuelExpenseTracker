@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping("/add")
     public String addUser() {
-        return "addUser";
+        return "addForms/addUser";
     }
 //    http://localhost:8080/user/add
 
@@ -50,9 +50,9 @@ public class UserController {
             userService.updateUserCar(addedUser);
             List<Car> cars = addedUser.getCarList();
             model.addAttribute("cars", cars);
-            return "CarList";
+            return "listPages/CarList";
         } catch (IllegalArgumentException e) {
-            return "errorPageEmail";
+            return "errorPages/errorPageEmail";
         }
     }
 
@@ -65,7 +65,7 @@ public class UserController {
         model.addAttribute("lastName", user.getLastName());
         model.addAttribute("email", user.getEmail());
         model.addAttribute("cars", user.getCarList());
-        return "CarList";
+        return "listPages/CarList";
     }
 
 
@@ -74,7 +74,7 @@ public class UserController {
     public String getAllUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "UserList";
+        return "listPages/UserList";
     }
 
 
@@ -85,7 +85,7 @@ public class UserController {
         model.addAttribute("firstName", user.getFirstName());
         model.addAttribute("lastName", user.getLastName());
         model.addAttribute("email", user.getEmail());
-        return "updateUser";
+        return "updateForms/updateUser";
     }
 
     @Transactional
@@ -95,50 +95,43 @@ public class UserController {
         return "redirect:/user/all";
     }
 
+
+//    @Transactional
+//    @GetMapping("/{email}")
+//    public ResponseEntity<Object> getUserByEmail(@PathVariable String email) {
+//        User user = userService.getUserByEmail(email);
+//        if (user == null) {
+//            return ResponseEntity.notFound().build();
+//        }
 //
-//    @GetMapping("/info/{id}")
-//    public String infoPage(@PathVariable Long id, Model model) {
-////        return "redirect:/user/all" + updatedUser.getEmail();
-//        return "infoPage";
+//        List<Car> carList = user.getCarList();
+//        List<CarInfoDTO> carInfoDTOList = new ArrayList<>();
+//
+//        for (Car car : carList) {
+//            int numberOfTrips = car.getTripList().size();
+//
+//            double totalFuelExpenses = car.getFuelExpenseList().stream()
+//                    .mapToDouble(FuelExpense::getFuelCost)
+//                    .sum();
+//
+//            CarInfoDTO carInfoDTO = new CarInfoDTO(
+//                    car.getRegistrationNumber(),
+//                    car.getMake(),
+//                    car.getModel(),
+//                    numberOfTrips,
+//                    totalFuelExpenses
+//            );
+//            carInfoDTOList.add(carInfoDTO);
+//        }
+//        return ResponseEntity.ok(carInfoDTOList);
 //    }
-
-
-    @Transactional
-    @GetMapping("/{email}")
-    public ResponseEntity<Object> getUserByEmail(@PathVariable String email) {
-        User user = userService.getUserByEmail(email);
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        List<Car> carList = user.getCarList();
-        List<CarInfoDTO> carInfoDTOList = new ArrayList<>();
-
-        for (Car car : carList) {
-            int numberOfTrips = car.getTripList().size();
-
-            double totalFuelExpenses = car.getFuelExpenseList().stream()
-                    .mapToDouble(FuelExpense::getFuelCost)
-                    .sum();
-
-            CarInfoDTO carInfoDTO = new CarInfoDTO(
-                    car.getRegistrationNumber(),
-                    car.getMake(),
-                    car.getModel(),
-                    numberOfTrips,
-                    totalFuelExpenses
-            );
-            carInfoDTOList.add(carInfoDTO);
-        }
-        return ResponseEntity.ok(carInfoDTOList);
-    }
 
 
     //DeleteMapping will not work with href in jsp file
     @GetMapping("/delete/{userId}")
     public String deleteUser(@PathVariable Long userId) {
         if (userId == null) {
-            return "errorPage";
+            return "errorPages/errorPage";
         }
         userService.deleteUser(userId);
         return "redirect:/user/all";
@@ -152,7 +145,7 @@ public class UserController {
         model.addAttribute("lastName", user.getLastName());
         model.addAttribute("email", user.getEmail());
         model.addAttribute("cars", user.getCarList());
-        return "CarList";
+        return "listPages/CarList";
     }
 
 

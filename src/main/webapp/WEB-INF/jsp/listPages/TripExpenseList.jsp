@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 
 <div class="container-fluid">
@@ -13,7 +13,7 @@
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Choose an action to perform</h6>
+            <h6 class="m-0 font-weight-bold text-primary">You may add a new expense or delete existing one.</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -45,6 +45,6 @@
 
 
 <!-- /.container-fluid -->
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>
 
 

@@ -22,7 +22,7 @@ public class CarExpenseController {
         model.addAttribute("carId", car.getId());
         model.addAttribute("make", car.getMake());
         model.addAttribute("model", car.getModel());
-        return "addCarExpense";
+        return "addForms/addCarExpense";
     }
 
     @PostMapping("/add")

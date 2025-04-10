@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 
 <div class="container-fluid">
@@ -135,6 +135,9 @@
                         </tr>
                     </c:forEach>
                 </table>
+                <div>
+                    <h1 class="h5 mb-0 font-weight-bold text-primary"> You have spent ${totalCarExpense} PLN on maintenance of this ${make} in total</h1>
+                </div>
             </div>
         </div>
     </div>
@@ -144,4 +147,4 @@
 
 
 <!-- /.container-fluid -->
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>

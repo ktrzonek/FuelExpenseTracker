@@ -19,7 +19,7 @@ public class FuelExpenseController {
     @GetMapping("/add")
     public String addFuelExpense(@RequestParam Long carId, Model model) {
         model.addAttribute("carId", carId);
-        return "addFuelExpense";
+        return "addForms/addFuelExpense";
     }
 
     @PostMapping("/add")

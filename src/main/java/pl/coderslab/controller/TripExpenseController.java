@@ -24,7 +24,7 @@ public class TripExpenseController {
         Trip trip = tripService.getTripById(tripId);
         model.addAttribute("tripId", trip.getId());
         model.addAttribute("tripName", trip.getTripName());
-        return "addTripExpense";
+        return "addForms/addTripExpense";
     }
 
     @PostMapping("/add")

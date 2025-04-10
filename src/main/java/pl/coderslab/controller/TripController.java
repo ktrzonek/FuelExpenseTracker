@@ -54,7 +54,7 @@ public class TripController {
         model.addAttribute("carId", car.getId());
         model.addAttribute("make", car.getMake());
         model.addAttribute("model", car.getModel());
-        return "addTrip";
+        return "addForms/addTrip";
     }
 
     @Transactional
@@ -67,7 +67,7 @@ public class TripController {
             carService.updateCar(carId, car);
             return "redirect:/car/show/" + carId;
         } catch (IllegalArgumentException e) {
-            return "errorPageAddCar";
+            return "errorPages/errorPageAddCar";
         }
     }
 
@@ -83,7 +83,7 @@ public class TripController {
         model.addAttribute("tripId", trip.getId());
         model.addAttribute("tripName", trip.getTripName());
         model.addAttribute("tripExpenses", trip.getTripExpenseList());
-        return "TripExpenseList";
+        return "listPages/TripExpenseList";
     }
 
 }

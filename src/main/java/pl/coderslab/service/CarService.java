@@ -3,6 +3,7 @@ package pl.coderslab.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.entity.Car;
+import pl.coderslab.entity.CarExpense;
 import pl.coderslab.entity.FuelExpense;
 import pl.coderslab.repository.CarRepository;
 
@@ -47,6 +48,16 @@ public class CarService {
 
     public void deleteCar(Long carId) {
         carRepository.deleteById(carId);
+    }
+
+    public Double getTotalCarExpenseCostForCar(Long id) {
+        Car car = carRepository.findById(id).orElse(null);
+        if (car != null && car.getCarExpenseList() != null) {
+            return car.getCarExpenseList().stream()
+                    .mapToDouble(CarExpense::getCarCost)
+                    .sum();
+        }
+        return 0.0;
     }
 
 

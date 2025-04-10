@@ -1,7 +1,6 @@
 package pl.coderslab.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -25,7 +24,7 @@ public class CarController {
     @GetMapping("/add")
     public String showFormAddCar(@RequestParam Long userId, Model model) {
         model.addAttribute("userId", userId);
-        return "addCar";
+        return "addForms/addCar";
     }
 
     @Transactional
@@ -38,21 +37,10 @@ public class CarController {
             userService.updateUserCar(user);
             return "redirect:/user/cars/" + user.getId();
         } catch (IllegalArgumentException e) {
-            return "errorPage";
+            return "errorPages/errorPage";
         }
     }
 
-
-    @Transactional
-    @GetMapping("/{id}/total-fuel-cost")
-    public ResponseEntity<Double> getTotalFuelCost(@PathVariable Long id) {
-        Double totalFuelCost = carService.getTotalFuelCostForCar(id);
-        if (totalFuelCost == 0.0) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(totalFuelCost);
-    }
-//    http://localhost:8080/car/1/total-fuel-cost
 
 
     @GetMapping("/update/{carId}")
@@ -64,7 +52,7 @@ public class CarController {
         model.addAttribute("registrationNumber", car.getRegistrationNumber());
         model.addAttribute("fuelType", car.getFuelType());
         model.addAttribute("userId", userId);
-        return "updateCar";
+        return "updateForms/updateCar";
     }
 
     @Transactional
@@ -91,13 +79,10 @@ public class CarController {
         model.addAttribute("trips", car.getTripList());
         model.addAttribute("fuelExpenses", car.getFuelExpenseList());
         model.addAttribute("carExpenses", car.getCarExpenseList());
+        //functions
         model.addAttribute("totalFuelExpense", carService.getTotalFuelCostForCar(car.getId()));
-        return "CarInfo";
+        model.addAttribute("totalCarExpense", carService.getTotalCarExpenseCostForCar(car.getId()));
+        return "listPages/CarInfo";
     }
 
-
-
-
-
-// zrobic na total trip cost z funkcji
 }

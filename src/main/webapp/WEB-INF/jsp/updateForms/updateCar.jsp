@@ -1,31 +1,34 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <div class="container-fluid">
 
     <div>
-                <h1 class="h3 mb-0 text-gray-800">Please enter the details below</h1>
+        <h1 class="h3 mb-0 text-gray-800">Please make the changes below</h1>
     </div>
     <br>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Add your car</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Update your car details</h6>
         </div>
         <div class="card-body">
 
-            <form action="/car/add" method="post">
+            <form action="/car/update/${carId}" method="post">
+                <input type="hidden" name="carId" value="${carId}">
                 <input type="hidden" name="userId" value="${userId}">
+
+
                 <div class="form-group">
                     <label for="make">Make</label>
-                    <input name="make" type="text" class="form-control" id="make" placeholder="" required>
+                    <input name="make" type="text" class="form-control" id="make" value="${make}">
                 </div>
                 <div class="form-group">
                     <label for="model">Model</label>
-                    <input name="model" type="text" class="form-control" id="model" required>
+                    <input name="model" type="text" class="form-control" id="model" value="${model}">
                 </div>
                 <div class="form-group">
                     <label for="registrationNumber">Registration number</label>
-                    <input name="registrationNumber" type="text" class="form-control" id="registrationNumber" required
+                    <input name="registrationNumber" type="text" class="form-control" id="registrationNumber" value="${registrationNumber}"
                            pattern=".{5,9}" title="Registration number must be between 5 and 9 characters"
                            oninput="this.value = this.value.toUpperCase()">
                 </div>
@@ -57,4 +60,4 @@
 </div>
 
 
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>

@@ -1,31 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <div class="container-fluid">
 
     <div>
-<%--        <h1 class="h3 mb-0 text-gray-800">FuelExpenseTracker</h1>--%>
+                <h1 class="h3 mb-0 text-gray-800">Please enter the details below</h1>
     </div>
-
+    <br>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Please enter your personal details</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Add your car</h6>
         </div>
         <div class="card-body">
 
-            <form action="/user/add" method="post">
-                <div class="form-group">
-                    <label for="firstName">First name</label>
-                    <input name="firstName" type="text" class="form-control" id="firstName" placeholder="" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last name</label>
-                    <input name="lastName" type="text" class="form-control" id="lastName" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input name="email" type="email" class="form-control" id="email" required>
-                </div>
+            <form action="/car/add" method="post">
+                <input type="hidden" name="userId" value="${userId}">
                 <div class="form-group">
                     <label for="make">Make</label>
                     <input name="make" type="text" class="form-control" id="make" placeholder="" required>
@@ -40,10 +29,6 @@
                            pattern=".{5,9}" title="Registration number must be between 5 and 9 characters"
                            oninput="this.value = this.value.toUpperCase()">
                 </div>
-<%--                <div class="form-group">--%>
-<%--                    <label for="fuelType">Fuel type</label>--%>
-<%--                    <input name="fuelType" type="text" class="form-control" id="fuelType" required>--%>
-<%--                </div>--%>
 
                 <div class="form-group">
                     <label for="fuelType">Fuel type</label>
@@ -61,9 +46,9 @@
                     </div>
                 </div>
 
-
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
+
             <button type="button" class="btn btn-secondary mt-3" onclick="history.back()">Go Back</button>
 
         </div>
@@ -72,4 +57,4 @@
 </div>
 
 
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>
