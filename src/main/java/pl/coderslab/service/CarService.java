@@ -7,6 +7,8 @@ import pl.coderslab.entity.CarExpense;
 import pl.coderslab.entity.FuelExpense;
 import pl.coderslab.repository.CarRepository;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.List;
 
 @Service
@@ -36,6 +38,20 @@ public class CarService {
         }
         return 0.0;
     }
+    public Double getTotalFuelCostForCarByMonth(Long id, YearMonth yearMonth) {
+        Car car = carRepository.findById(id).orElse(null);
+        if (car != null && car.getFuelExpenseList() != null) {
+            return car.getFuelExpenseList().stream()
+                    .filter(expense -> {
+                        LocalDate date = expense.getDate();
+                        return YearMonth.from(date).equals(yearMonth);
+                    })
+                    .mapToDouble(FuelExpense::getFuelCost)
+                    .sum();
+        }
+        return 0.0;
+    }
+
 
     public Car updateCar(Long carId, Car car) {
         Car updatedCar = carRepository.findById(carId).orElse(null);
@@ -50,6 +66,7 @@ public class CarService {
         carRepository.deleteById(carId);
     }
 
+
     public Double getTotalCarExpenseCostForCar(Long id) {
         Car car = carRepository.findById(id).orElse(null);
         if (car != null && car.getCarExpenseList() != null) {
@@ -59,6 +76,21 @@ public class CarService {
         }
         return 0.0;
     }
+
+    public Double getTotalCarExpenseCostForCarByMonth(Long id, YearMonth yearMonth) {
+        Car car = carRepository.findById(id).orElse(null);
+        if (car != null && car.getCarExpenseList() != null) {
+            return car.getCarExpenseList().stream()
+                    .filter(expense -> {
+                        LocalDate date = expense.getDate();
+                        return YearMonth.from(date).equals(yearMonth);
+                    })
+                    .mapToDouble(CarExpense::getCarCost)
+                    .sum();
+        }
+        return 0.0;
+    }
+
 
 
 

@@ -13,7 +13,6 @@
             <i class="fas fa-download fa-sm text-white-50"></i>Add a car</a>
     </div>
 
-
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">All of your cars ${firstName} are listed below</h6>
@@ -27,6 +26,7 @@
                         <th>Model</th>
                         <th>Registration number</th>
                         <th>Action</th>
+                        <th></th>
 
                     </tr>
                     <c:forEach items="${cars}" var="car">
@@ -38,7 +38,11 @@
                             <td>
                                                 <a href="<c:url value='/car/delete/${car.id}?userId=${userId}'/>">Delete</a>
                                                 <a href="<c:url value='/car/update/${car.id}?userId=${userId}'/>">Edit</a>
-                                                <a href="<c:url value='/car/show/${car.id}'/>">Show</a>
+                            </td>
+                            <td>
+                                <button onclick="window.location.href='<c:url value='/car/show/${car.id}'/>'" class="btn btn-primary btn-sm">
+                                    Show details
+                                </button>
                             </td>
                         </tr>
                     </c:forEach>

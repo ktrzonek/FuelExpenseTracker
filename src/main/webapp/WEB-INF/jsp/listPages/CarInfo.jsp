@@ -14,6 +14,22 @@
         <h1 class="h3 mb-0 text-gray-800 font-weight-bold">${make} ${model}, ${registrationNumber}</h1>
         <h1 class="h4 mb-0 text-gray-800">Fuel type: ${fuelType}</h1>
     </div>
+    <br>
+
+    <div>
+        <form method="get" action="${pageContext.request.contextPath}/car/show/${carId}" class="form-inline mb-3">
+            <label for="month" class="mr-2">Filter by month:</label>
+            <input type="month" id="month" name="month" class="form-control mr-2" value="${selectedMonth}" />
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+    </div>
+    <br>
+    <c:if test="${not empty selectedMonth}">
+        <div class="alert alert-info mt-3">
+            Now you can see all the trips and expenses for <strong>${selectedMonthFormatted}</strong>.
+        </div>
+    </c:if>
+
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1></h1>
@@ -36,6 +52,7 @@
                         <th>Distance</th>
                         <th>Fuel consumption</th>
                         <th>Action</th>
+                        <th></th>
 
                     </tr>
                     <c:forEach items="${trips}" var="trip">
@@ -47,7 +64,12 @@
                             <td>${trip.fuelConsumption}</td>
                             <td>
                                 <a href="<c:url value='/trip/delete/${trip.id}?carId=${carId}'/>">Delete</a>
-                                <a href="<c:url value='/trip/show/${trip.id}'/>">Show</a>
+<%--                                <a href="<c:url value='/trip/show/${trip.id}'/>">Show</a>--%>
+                            </td>
+                            <td>
+                                <button onclick="window.location.href='<c:url value='/trip/show/${trip.id}'/>'" class="btn btn-primary btn-sm">
+                                    Show trip expenses
+                                </button>
                             </td>
                         </tr>
                     </c:forEach>
