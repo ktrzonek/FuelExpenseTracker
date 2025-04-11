@@ -15,6 +15,8 @@
 
             <form action="/tripExpense/add" method="post">
                 <input type="hidden" name="tripId" value="${tripId}">
+                <input type="hidden" name="carId" value="${carId}">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">  <!-- token CSRF -->
 
                 <div class="form-group">
                     <label for="expenseName">Expense name</label>
@@ -28,7 +30,7 @@
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
 
-            <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='http://localhost:8080/trip/show/' + ${tripId}">Go Back</button>
+            <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='http://localhost:8080/trip/show/' + ${tripId} + '?carId=' + ${carId}">Go Back to Trip List</button>
 
         </div>
     </div>

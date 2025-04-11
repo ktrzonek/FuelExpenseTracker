@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">A list of expenses for ${tripName}</h1>
-        <a href="<c:url value="/tripExpense/add?tripId=${tripId}"/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="<c:url value="/tripExpense/add?tripId=${tripId}&carId=${carId}"/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-download fa-sm text-white-50"></i>Add new expense</a>
     </div>
     <div class="card shadow mb-4">
@@ -38,7 +38,7 @@
                         </tr>
                     </c:forEach>
                 </table>
-                <button type="button" class="btn btn-secondary mt-3" onclick="history.back()">Go Back</button>
+                <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='http://localhost:8080/car/show/' + ${carId}">Go Back to Car Info</button>
             </div>
         </div>
     </div>

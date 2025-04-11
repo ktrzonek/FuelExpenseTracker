@@ -15,6 +15,7 @@
 
             <form action="/fuelExpense/add" method="post">
                 <input type="hidden" name="carId" value="${carId}">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">  <!-- token CSRF -->
 
                 <div class="form-group">
                     <label for="fuelCost">Fuel cost</label>
@@ -36,7 +37,7 @@
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
 
-            <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='http://localhost:8080/car/show/' + ${carId}">Go Back</button>
+            <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='http://localhost:8080/car/show/' + ${carId}">Go Back to Car Info</button>
 
         </div>
     </div>

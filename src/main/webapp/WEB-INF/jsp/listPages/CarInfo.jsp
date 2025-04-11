@@ -29,18 +29,13 @@
             Now you can see all the trips and expenses for <strong>${selectedMonthFormatted}</strong>.
         </div>
     </c:if>
-
-
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1></h1>
-        <a href="<c:url value='/trip/add?carId=${carId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i>Add a trip</a>
-    </div>
-
+    <br>
 
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h6 class="m-0 font-weight-bold text-primary">Trips</h6>
+            <a href="<c:url value='/trip/add?carId=${carId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-download fa-sm text-white-50"></i>Add a trip</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -67,7 +62,7 @@
 <%--                                <a href="<c:url value='/trip/show/${trip.id}'/>">Show</a>--%>
                             </td>
                             <td>
-                                <button onclick="window.location.href='<c:url value='/trip/show/${trip.id}'/>'" class="btn btn-primary btn-sm">
+                                <button onclick="window.location.href='<c:url value='/trip/show/${trip.id}?carId=${carId}'/>'" class="btn btn-primary btn-sm">
                                     Show trip expenses
                                 </button>
                             </td>
@@ -80,15 +75,11 @@
 
     <br>
 
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1></h1>
-        <a href="<c:url value='/fuelExpense/add?carId=${carId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i>Add fuel expense</a>
-    </div>
-
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h6 class="m-0 font-weight-bold text-primary">Fuel expenses</h6>
+            <a href="<c:url value='/fuelExpense/add?carId=${carId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-download fa-sm text-white-50"></i>Add fuel expense</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -124,16 +115,13 @@
 
     <br>
 
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1></h1>
-        <a href="<c:url value='/carExpense/add?carId=${carId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i>Add car expense</a>
-    </div>
-
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h6 class="m-0 font-weight-bold text-primary">Car expenses</h6>
+            <a href="<c:url value='/carExpense/add?carId=${carId}'/>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-download fa-sm text-white-50"></i>Add car expense</a>
         </div>
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
@@ -164,7 +152,7 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-secondary mt-3" onclick="history.back()">Go Back</button>
+    <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='http://localhost:8080/user/cars/${userId}'">Go to Car List</button>
 </div>
 
 

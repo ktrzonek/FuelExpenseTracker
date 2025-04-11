@@ -14,7 +14,7 @@
         <div class="card-body">
 
             <form action="/car/add" method="post">
-                <input type="hidden" name="userId" value="${userId}">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">
                 <div class="form-group">
                     <label for="make">Make</label>
                     <input name="make" type="text" class="form-control" id="make" placeholder="" required>

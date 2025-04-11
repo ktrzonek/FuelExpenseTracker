@@ -16,6 +16,7 @@
             <form action="/car/update/${carId}" method="post">
                 <input type="hidden" name="carId" value="${carId}">
                 <input type="hidden" name="userId" value="${userId}">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">  <!-- token CSRF -->
 
 
                 <div class="form-group">

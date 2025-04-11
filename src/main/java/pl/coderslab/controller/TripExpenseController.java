@@ -20,22 +20,24 @@ public class TripExpenseController {
 
 
     @GetMapping("/add")
-    public String addTripExpense(@RequestParam Long tripId, Model model) {
+    public String addTripExpense(@RequestParam Long tripId, @RequestParam Long carId, Model model) {
         Trip trip = tripService.getTripById(tripId);
         model.addAttribute("tripId", trip.getId());
         model.addAttribute("tripName", trip.getTripName());
+        model.addAttribute("carId", carId);
         return "addForms/addTripExpense";
     }
 
     @PostMapping("/add")
-    public String addTripExpense(@ModelAttribute TripExpense tripExpense, @RequestParam Long tripId, Model model) {
+    public String addTripExpense(@ModelAttribute TripExpense tripExpense, @RequestParam Long tripId, @RequestParam Long carId, Model model) {
         TripExpense newTripExpense = tripExpenseService.addTripExpense(tripExpense);
         Trip trip = tripService.getTripById(tripId);
         trip.getTripExpenseList().add(newTripExpense);
         tripService.updateTrip(tripId, trip);
         model.addAttribute("tripId", trip.getId());
         model.addAttribute("tripName", trip.getTripName());
-        return "redirect:/trip/show/" + tripId;
+        model.addAttribute("carId", carId);
+        return "redirect:/trip/show/" + tripId + "?carId=" + carId;
     }
 
 

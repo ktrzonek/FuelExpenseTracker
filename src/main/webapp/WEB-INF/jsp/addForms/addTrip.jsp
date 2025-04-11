@@ -15,13 +15,14 @@
 
             <form action="/trip/add" method="post">
                 <input type="hidden" name="carId" value="${carId}">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">  <!-- token CSRF -->
 
                 <div class="form-group">
                     <label for="tripName">Trip name</label>
                     <input name="tripName" type="text" class="form-control" id="tripName" placeholder="" required>
                 </div>
                 <div class="form-group">
-                    <label for="date">Model</label>
+                    <label for="date">Date</label>
                     <input name="date" type="date" class="form-control" id="date" required>
                 </div>
                 <div class="form-group">
@@ -36,7 +37,7 @@
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
 
-            <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='http://localhost:8080/car/show/' + ${carId}">Go Back</button>
+            <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='http://localhost:8080/car/show/' + ${carId}">Go Back to Car Info</button>
 
         </div>
     </div>

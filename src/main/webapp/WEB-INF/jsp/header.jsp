@@ -45,24 +45,11 @@
 
         <br>
         <!-- Heading -->
-        <div class="sidebar-heading">
-            Menu
-        </div>
-
-
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href="/user/all">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Users</span></a>
-        </li>
-
-        <!-- Sidebar Toggler (Sidebar) -->
-
-<%--        <div class="text-center d-none d-md-inline">--%>
-<%--            <button class="rounded-circle border-0" id="sidebarToggle"></button>--%>
+<%--        <div class="sidebar-heading">--%>
+<%--            Menu--%>
 <%--        </div>--%>
+
+
     </ul>
 
     <!-- End of Sidebar -->
@@ -85,16 +72,16 @@
 
                 <!-- Topbar Search -->
 
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="/user/findByEmail">
-                    <div class="input-group">
-                        <input type="email" name="enteredEmail" class="form-control bg-light border-0 small" placeholder="Enter your email here to see your profile" aria-label="Search" aria-describedby="basic-addon2" required>
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">
-                                >
-                            </button>
-                        </div>
-                    </div>
-                </form>
+<%--                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="/user/findByEmail">--%>
+<%--                    <div class="input-group">--%>
+<%--                        <input type="email" name="enteredEmail" class="form-control bg-light border-0 small" placeholder="Enter your email here to see your profile" aria-label="Search" aria-describedby="basic-addon2" required>--%>
+<%--                        <div class="input-group-append">--%>
+<%--                            <button class="btn btn-primary" type="submit">--%>
+<%--                                >--%>
+<%--                            </button>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </form>--%>
 
 
 

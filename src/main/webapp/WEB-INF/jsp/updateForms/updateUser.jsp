@@ -14,6 +14,7 @@
         <div class="card-body">
 
             <form action="/user/update/${id}" method="post">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">  <!-- token CSRF -->
                 <div class="form-group">
                     <label for="firstName">First name</label>
                     <input name="firstName" type="text" class="form-control" id="firstName" value="${firstName}">

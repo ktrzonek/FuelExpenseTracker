@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 
 <div class="container-fluid">
@@ -15,7 +15,8 @@
         </div>
         <div class="card-body">
 
-            <form action="/user/login" method="post">
+            <form action="/login" method="post">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">  <!-- token CSRF -->
 
                 <div class="form-group">
                     <label for="email">Login</label>
@@ -29,11 +30,11 @@
                 <button type="submit" class="btn btn-primary">Log in</button>
             </form>
             <br>
-            <a href="/user/add" class="btn btn-secondary">Add New User</a>
+            <a href="/addUser" class="btn btn-secondary">Add New User</a>
         </div>
     </div>
 
 </div>
 
 
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>

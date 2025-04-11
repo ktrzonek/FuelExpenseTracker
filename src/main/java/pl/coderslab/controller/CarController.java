@@ -1,5 +1,6 @@
 package pl.coderslab.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,15 +29,16 @@ public class CarController {
 
 
     @GetMapping("/add")
-    public String showFormAddCar(@RequestParam Long userId, Model model) {
-        model.addAttribute("userId", userId);
+    public String showFormAddCar(HttpServletRequest request) {
+        Long userId = (Long) request.getSession().getAttribute("userId");
         return "addForms/addCar";
     }
 
     @Transactional
     @PostMapping("/add")
-    public String addCar(@ModelAttribute Car car, @RequestParam Long userId) {
+    public String addCar(@ModelAttribute Car car, HttpServletRequest request) {
         try {
+            Long userId = (Long) request.getSession().getAttribute("userId");
             Car addedCar = carService.addCar(car);
             User user = userService.getUserById(userId);
             user.getCarList().add(addedCar);
@@ -50,29 +52,31 @@ public class CarController {
 
 
     @GetMapping("/update/{carId}")
-    public String showFormUpdateCar(@PathVariable Long carId, Model model, @RequestParam Long userId) {
+    public String showFormUpdateCar(@PathVariable Long carId, Model model) {
         Car car = carService.getById(carId);
         model.addAttribute("carId", car.getId());
         model.addAttribute("make", car.getMake());
         model.addAttribute("model", car.getModel());
         model.addAttribute("registrationNumber", car.getRegistrationNumber());
         model.addAttribute("fuelType", car.getFuelType());
-        model.addAttribute("userId", userId);
         return "updateForms/updateCar";
     }
 
     @Transactional
     @PostMapping("/update/{carId}")
-    public String updateCar(@PathVariable Long carId, @ModelAttribute Car car, @RequestParam Long userId) {
+    public String updateCar(@PathVariable Long carId, @ModelAttribute Car car, HttpServletRequest request) {
         Car updatedCar = carService.updateCar(carId, car);
+        Long userId = (Long) request.getSession().getAttribute("userId");
         return "redirect:/user/cars/" + userId;
     }
 
     @GetMapping("/delete/{carId}")
-    public String deleteUser(@PathVariable Long carId, @RequestParam Long userId) {
+    public String deleteUser(@PathVariable Long carId, HttpServletRequest request) {
         carService.deleteCar(carId);
+        Long userId = (Long) request.getSession().getAttribute("userId");
         return "redirect:/user/cars/" + userId;
     }
+
 
     @GetMapping("/show/{carId}")
     public String showCarInfo(@PathVariable Long carId,
