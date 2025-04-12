@@ -34,6 +34,7 @@ public class LoginController {
     }
 
 
+
     @GetMapping("/start")
     public String loginPage(HttpServletRequest request) {
         if (request.getSession().getAttribute("user") != null) {
@@ -42,7 +43,7 @@ public class LoginController {
         return "login/log";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/user/login")
     public String login(@RequestParam String email, @RequestParam String password, HttpServletRequest request) {
         User user = userService.getUserByEmail(email);
         Long userId = user.getId();
@@ -52,6 +53,7 @@ public class LoginController {
         List<Car> cars = user.getCarList();
 
         if (user != null && userService.checkPassword(user, password)) {
+            request.getSession().setAttribute("user", user);
             request.getSession().setAttribute("userId", userId);
             request.getSession().setAttribute("firstName", firstName);
             request.getSession().setAttribute("lastName", lastName);
@@ -63,11 +65,16 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/user/logout")
-    public String logout(HttpServletRequest request) {
-        request.getSession().invalidate();
-        return "redirect:/start";
+    @GetMapping("/failure")
+    public String loginFailure() {
+        return "errorPages/errorPageEmail";
     }
+
+//    @GetMapping("/user/logout")
+//    public String logout(HttpServletRequest request) {
+//        request.getSession().invalidate();
+//        return "redirect:/start";
+//    }
 
 
 

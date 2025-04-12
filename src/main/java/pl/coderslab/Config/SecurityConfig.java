@@ -2,10 +2,14 @@ package pl.coderslab.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
 
 @Configuration
 @EnableWebSecurity
@@ -19,26 +23,24 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/start", "/user/add").permitAll()
-//                        .anyRequest().authenticated()
-                                .anyRequest().permitAll()
-                )
-
                 .formLogin(form -> form
-                        .loginPage("/start") // <-- twoja strona logowania (GET)
-                        .loginProcessingUrl("/user/login") // <-- tu leci POST z formularza
-                        .defaultSuccessUrl("/listPages/CarList", true)
+                        .loginPage("/login/log")               // GET — pokazuje formularz logowania
+                        .loginProcessingUrl("/login")      // POST — Spring obsługuje logowanie
+                        .defaultSuccessUrl("/user/cars", true) // Możesz tu dynamicznie przekierować po zalogowaniu
+                        .failureUrl("/failure")
                         .permitAll()
-                )
-
-//                .sessionManagement(session -> session
-//                        .maximumSessions(1)  // Limit number of sessions per user
-//                        .expiredUrl("/user/start")  // Redirect to the login page if the session expires
 //                )
-        ;
-
-
+                );
+//
+//                .logout(logout -> logout
+//                        .logoutUrl("/user/logout")          // adres do wylogowania
+//                        .logoutSuccessUrl("/start")         // gdzie przekierować po wylogowaniu
+//                        .invalidateHttpSession(true)
+//                        .deleteCookies("JSESSIONID")
+//                        .permitAll()
+//                );
+//
         return http.build();
     }
+
 }

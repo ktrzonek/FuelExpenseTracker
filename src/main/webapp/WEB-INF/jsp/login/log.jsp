@@ -15,7 +15,7 @@
         </div>
         <div class="card-body">
 
-            <form action="/login" method="post">
+            <form action="/user/login" method="post">
                 <input type="hidden" name="_csrf" value="${_csrf.token}">  <!-- token CSRF -->
 
                 <div class="form-group">
